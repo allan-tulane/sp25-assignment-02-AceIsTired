@@ -1,13 +1,8 @@
 # CMPS 2200 Assignment 2
 
-**Name:**_________________________
+**Name:** Jamari Ross
 
-In this assignment we'll work on applying the methods we've learned to analyze recurrences, and also see their behavior
-in practice. As with previous
-assignments, some of of your answers will go in `main.py` and `test_main.py`. You
-should feel free to edit this file with your answers; for handwritten
-work please scan your work and submit a PDF titled `assignment-02.pdf`
-and push to your github repository.
+In this assignment we'll work on applying the methods we've learned to analyze recurrences, and also see their behavior in practice. As with previous assignments, some of of your answers will go in `main.py` and `test_main.py`. You should feel free to edit this file with your answers; for handwritten work please scan your work and submit a PDF titled `assignment-02.pdf` and push to your github repository.
 
 
 ## Part 1. Asymptotic Analysis
@@ -16,59 +11,43 @@ Derive asymptotic upper bounds of work for each recurrence below.
 
 * $W(n)=2W(n/3)+1$
 .  
-.  
-. 
-.  
+~ $W(n) = O(n^{\log_3 2})$ - leaf dom.
 . 
 .  
 . 
  
 * $W(n)=5W(n/4)+n$
 .  
-.
+~ $W(n) = O(n^{\log_4 5})$ - leaf dom.
 .  
 . 
-.  
-. 
-.  
 .  
 . 
 
 * $W(n)=7W(n/7)+n$
 .  
-. 
+~ $W(n) = O(n \log n)$ - balanced
 .  
-.  
-. 
 .  
 .
-
 * $W(n)=9W(n/3)+n^2$
 .  
-.
+~ $W(n) = O(n^2 \log n)$ - balanced
 . 
 .  
 . 
-.  
-.  
-.  
 .
-
 * $W(n)=8W(n/2)+n^3$
 .  
-.
+~ $W(n) = O(n^3 \log n)$ - balanced
 .  
 .  
 .  
 .  
-. 
-.  
-. 
-
 
 * $W(n)=49W(n/25)+n^{3/2}\log n$
 .  
-.  
+~ $W(n) = O(n^{3/2} \log n)$ - root dom.
 . 
 .  
 . 
@@ -78,7 +57,7 @@ Derive asymptotic upper bounds of work for each recurrence below.
 
 * $W(n)=W(n-1)+2$
 .  
-.  
+~ $W(n) = O(n)$ - leaf dom.
 . 
 .  
 . 
@@ -88,7 +67,7 @@ Derive asymptotic upper bounds of work for each recurrence below.
 
 * $W(n)= W(n-1)+n^c$, with $c\geq 1$
 .  
-.  
+~ $W(n) = O(n^{c+1})$ - root dom.
 .  
 .  
 .  
@@ -98,7 +77,7 @@ Derive asymptotic upper bounds of work for each recurrence below.
 
 * $W(n)=W(\sqrt{n})+1$
 .  
-.  
+~ $W(n) = O(\log \log n)$ - root dom.
 .  
 .  
 .  
@@ -127,12 +106,14 @@ Suppose that for a given task you are choosing between the following three algor
     Which algorithm would you choose?
 
 
-.  
-.  
-.  
-.  
++ **Alg A = $W(n) = 5W(n/2) + O(n)$**
+~~ $W(n) = O(n^{\log_2 5})$
++ **Alg B = $W(n) = 2W(n-1) + O(1)$**
+~~ $W(n) = O(2^n)$
++ **Alg C = $W(n) = 9W(n/3) + O(n^2)$**
+~~ $W(n) = O(n^2 \log n)$
 . 
-. 
+I would choose alg C.
 
 
 
@@ -153,14 +134,17 @@ Below, we'll solve this problem three different ways, using iterate, scan, and d
 **3a. iterative solution** Implement `parens_match_iterative`, a solution to this problem using the `iterate` function. **Hint**: consider using a single counter variable to keep track of whether there are more open or closed parentheses. How can you update this value while iterating from left to right through the input? What must be true of this value at each step for the parentheses to be matched? To complete this, complete the `parens_update` function and the `parens_match_iterative` function. The `parens_update` function will be called in combination with `iterate` inside `parens_match_iterative`. Test your implementation with `test_parens_match_iterative`.
 
 
-.  
+DONE
 . 
 
 
 
-**3b.** What are the recurrences for the Work and Span of this solution? What are their Big Oh solutions?
+**3b.** What are the recurrences for the Work and Span of this solution? What are their Big O solutions?
 
-**enter answer here**
+**$W(n) = W(n-1) + O(1)$**
+**$S(n) - S(n-1) + O(1)$**
+
+Work and Span = $O(n)$
 
 .  
 . 
@@ -169,15 +153,18 @@ Below, we'll solve this problem three different ways, using iterate, scan, and d
 
 **3c. scan solution** Implement `parens_match_scan` a solution to this problem using `scan`. **Hint**: We have given you the function `paren_map` which maps `(` to `1`, `)` to `-1` and everything else to `0`. How can you pass this function to `scan` to solve the problem? You may also find the `min_f` function useful here. Implement `parens_match_scan` and test with `test_parens_match_scan`
 
-.  
+DONE
 . 
 
 
 
 **3d.** Assume that any `map`s are done in parallel, and that we use the efficient implementation of `scan` from class. What are the recurrences for the Work and Span of this solution? 
 
-**enter answer here**
+**$W(n)=O(n)+O(n)+O(n)$**
+**$S(n)=O(1)+O(logn)+O(logn)$**
 
+Work = $O(n)$
+Span = $O(logn)$
 .  
 .  
 
@@ -188,7 +175,7 @@ Below, we'll solve this problem three different ways, using iterate, scan, and d
 
 
 
-.  
+DONE
 . 
 
 
@@ -197,7 +184,11 @@ Below, we'll solve this problem three different ways, using iterate, scan, and d
 
 **3f.** Assuming any recursive calls are done in parallel, what are the recurrences for the Work and Span of this solution? What are their Big Oh solutions?
 
-**enter answer here**
+**$W(n) = 2W(n/2) + O(1)$**
+**$S(n) = 2S(n/2) + O(1)$**
+
+Work = $O(n)$
+Span = $O(logn)$
 
 .  
 . 

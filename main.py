@@ -22,9 +22,9 @@ def parens_match_iterative(mylist):
     >>>parens_match_iterative(['('])
     False
     """
-    ### TODO
+    
     return iterate(parens_update, 0, mylist) == 0
-    ###
+    
 
 
 def parens_update(current_output, next_input):
@@ -39,7 +39,7 @@ def parens_update(current_output, next_input):
     Returns:
       the updated value of `current_output`
     """
-    ###TODO
+    
     if current_output == -math.inf:  # in an invalid state; carry it forward
         return current_output
     if next_input == '(':            # new open parens 
@@ -51,11 +51,24 @@ def parens_update(current_output, next_input):
             return current_output - 1
     else:                            # ignore non-parens input
         return current_output
-    ###
+    
 
+def iterate(func, a, b):
+    if len(b) <= 0:
+        return a
+    else:
+        return iterate(func, func(a, b[0]), b[1:])
 
+def reduce(func, id_, a):
+    if len(a) == 0:
+        return id_
+    elif len(a) == 1:
+        return func(id_, a[0])
+    else:
+        return func(reduce(func, id_, a[:len(a)//2]), reduce(func, id_, a[len(a)//2:]))
 
-
+def plus(a, b):
+    return a + b
 
 #### Scan solution
 
@@ -76,11 +89,10 @@ def parens_match_scan(mylist):
     False
     
     """
-    ###TODO
+    
     history, last = scan(plus, 0, list(map(paren_map, mylist)))
     return last == 0 and reduce(min_f, 0, history) >= 0
-    ###
-
+    
 def scan(f, id_, a):
     """
     This is a horribly inefficient implementation of scan
@@ -169,5 +181,5 @@ def parens_match_dc_helper(mylist):
     else:
         return (i + k - j, l)
     ###
-    
+
 
